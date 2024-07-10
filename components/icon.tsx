@@ -6,11 +6,13 @@ interface IconProps {
   name: keyof typeof icons;
   color?: ColorValue;
   size?: LucideProps['size'];
+  isGray?: boolean;
 }
 
-export const TabBarIcon: React.FC<IconProps> = ({ name, color, size }) => {
+const CustomIcon: React.FC<IconProps> = ({ name, color, size, isGray }) => {
   const LucideIcon: React.FC<LucideProps & { color?: ColorValue }> = icons[name];
 
-  return <LucideIcon color={color} size={size} style={{ marginBottom: -3 }} />;
+  return <LucideIcon color={isGray ? '#A4A8B5' : color} size={size} />;
 };
 
+export default CustomIcon;
