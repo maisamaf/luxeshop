@@ -7,9 +7,10 @@ import { setCustomText } from "react-native-global-props";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // redux
-
 import { store } from "@/store/configureStore";
 import { Provider } from "react-redux";
+
+import Toast from "react-native-toast-message";
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -57,8 +58,15 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="checkout"
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack>
       </Provider>
+      <Toast />
     </GestureHandlerRootView>
   );
 }
