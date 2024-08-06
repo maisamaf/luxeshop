@@ -64,6 +64,12 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="search"
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack>
       </Provider>
       <Toast />
