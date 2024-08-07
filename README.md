@@ -2,11 +2,9 @@
 
 This e-commerce project is built on top of Expo, TypeScript, NativeWind and Redux. The project is a UI but have used redux for the sake of adding products to the cart page.
 
-## Demo
+## Screenshots
 
-<video width="320" height="240" autoplay controls>
-  <source src="./screenshots/luxeshop-demo.mp4" type="video/mp4">
-</video>
+![App Screenshot](screenshots/demo.png)
 
 ## Documentation
 
@@ -24,9 +22,6 @@ Read more about the tools used in this project.
 - Checkout Page
 - Search Page
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Run Locally
 
@@ -54,6 +49,8 @@ Start the server
   npx expo start
 ```
 
-## Screenshots
 
-![App Screenshot](screenshots/demo.png)
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
