@@ -13,7 +13,8 @@ export const productList = [
     slug: "blue-t-shirt",
     id: uuid.v4(),
     title: "Uniqlo Basic T-shirt Oversized White",
-    description: "Table with air Purifier, stained veneer/black",
+    description:
+      "Add contemporary style to your casual wear collection with this elegant Band collar T-shirt. This Band collar T-shirt is made using the latest dying techniques that resists color fading and staining. The superior stitching gives it durability against pilling and wrinkles to give you a decent look for a much longer time.",
     price: 2390,
     color: "black",
     discount: 10,
