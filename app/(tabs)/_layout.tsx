@@ -1,10 +1,8 @@
+import { Text, TouchableOpacity, View } from "react-native";
 import { Tabs } from "expo-router";
 
-import { TabBarIcon } from "../../components/TabBarIcon";
-import { Text, TouchableOpacity, View } from "react-native";
-
+import { TabBarIcon } from "@/components/TabBarIcon";
 import CustomIcon from "@/components/icon";
-
 import { PRIMARY } from "@/utils/colors";
 
 export default function TabLayout() {
@@ -41,10 +39,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="wishlist"
+        name="search"
         options={{
-          title: "Wishlist",
-          tabBarIcon: ({ color }) => <TabBarIcon name="Heart" color={color} />,
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="Search" color={color} />,
+          headerShown: false,
         }}
       />
       <Tabs.Screen
