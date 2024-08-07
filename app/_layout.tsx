@@ -12,15 +12,10 @@ import { Provider } from "react-redux";
 
 import Toast from "react-native-toast-message";
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
-};
-
 SplashScreen.preventAutoHideAsync();
 const customTextProps = {
   style: {
-    fontFamily: "fsregular",
+    fontFamily: "sfregular",
   },
 };
 export default function RootLayout() {
