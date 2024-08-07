@@ -1,16 +1,10 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 
-const PromoCard = ({ image, url }: { image: string; url: string }) => {
+const PromoCard = ({ image, url }: { image?: string; url?: string }) => {
   return (
     <TouchableOpacity
       onPress={() => {}}
-      className="h-48 mx-4 overflow-hidden rounded-lg"
+      className="h-48 overflow-hidden rounded-lg"
     >
       <Image
         source={require("@/assets/images/one.webp")}

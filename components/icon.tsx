@@ -1,5 +1,5 @@
 import { icons, LucideProps } from "lucide-react-native";
-import React, { SVGProps } from "react";
+import React from "react";
 import { ColorValue } from "react-native";
 
 interface IconProps {

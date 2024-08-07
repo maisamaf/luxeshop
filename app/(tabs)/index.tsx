@@ -1,143 +1,50 @@
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Text,
+  Touchable,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CustomIcon from "@/components/icon";
 import { StatusBar } from "expo-status-bar";
 import Search from "@/components/search";
 import Category from "@/components/category";
-import PromoCard from "@/components/promo-card";
+
 import ProductCard from "@/components/product-card";
 import { MasonryFlashList } from "@shopify/flash-list";
+import { useRouter } from "expo-router";
 
-const categoriesList = [
-  {
-    id: "electronic",
-    title: "Electronic",
-    image: require("@/assets/images/electronics.png"),
-  },
-  {
-    id: "food-drink",
-    title: "Food & Drink",
-    image: require("@/assets/images/fast-food.png"),
-  },
-  {
-    id: "accessories",
-    title: "Accessories",
-    image: require("@/assets/images/watch.png"),
-  },
-  {
-    id: "beauty",
-    title: "Beauty",
-    image: require("@/assets/images/makeup-pouch.png"),
-  },
-  {
-    id: "furniture",
-    title: "Furniture",
-    image: require("@/assets/images/sofa.png"),
-  },
-  {
-    id: "fashion",
-    title: "Fashion",
-    image: require("@/assets/images/consumption.png"),
-  },
-  {
-    id: "health",
-    title: "Health",
-    image: require("@/assets/images/healthcare.png"),
-  },
-  {
-    id: "stationery",
-    title: "Stationery",
-    image: require("@/assets/images/stationery.png"),
-  },
-];
+// color
+import { PRIMARY } from "@/utils/colors";
 
-const productList = [
-  {
-    id: "product-1",
-    image: "https://img.freepik.com/free-photo/blue-t-shirt_125540-727.jpg",
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 1200,
-    rating: 4.9,
-    url: "",
-    soldItems: 564,
-    location: "Sydney",
-  },
-  {
-    id: "product-2",
-    image: require("@/assets/images/shoe.png"),
-    title: "New Balance 550 Men's Sneakers Shoes - Beige",
-    price: 430,
-    rating: 4.9,
-    url: "",
-    soldItems: 246,
-    discount: 12,
-    location: "Sydney",
-  },
-  {
-    id: "product-3",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "New Balance 550 Men's Sneakers Shoes - Beige",
-    price: 500,
-    rating: 4.9,
-    url: "",
-    soldItems: 21,
-    discount: 10,
-    location: "Sydney",
-  },
-  {
-    id: "product-4",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 200,
-    rating: 4.9,
-    url: "",
-    soldItems: 212,
-    discount: 25,
-    location: "Sydney",
-  },
-  {
-    id: "product-6",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 1200,
-    rating: 4.9,
-    url: "",
-    soldItems: 897,
-    location: "Sydney",
-  },
-  {
-    id: "product-7",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 1200,
-    rating: 4.9,
-    url: "",
-    soldItems: 344,
-    location: "Sydney",
-  },
-  {
-    id: "product-8",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 1200,
-    rating: 4.9,
-    url: "",
-    soldItems: 344,
-    location: "Sydney",
-  },
-  {
-    id: "product-9",
-    image: require("@/assets/images/white-tshirt.png"),
-    title: "Uniqlo Basic T-shirt Oversized White",
-    price: 1200,
-    rating: 4.9,
-    url: "",
-    soldItems: 344,
-    location: "Sydney",
-  },
-];
+// data
+import { categoriesList } from "@/utils/data";
+import { productList } from "@/utils/data";
+
+import Toast from "react-native-toast-message";
+
+// redux state
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/configureStore";
+import PromoCard from "@/components/promo-card";
+
 export default function Home() {
+  const router = useRouter();
+  const cart = useSelector((state: RootState) => state.cart);
+
+  const cartOnClick = () => {
+    if (cart.length > 0) {
+      router.push("/cart");
+    } else {
+      Toast.show({
+        type: "info",
+        text1: "Cart is empty!",
+      });
+    }
+  };
+
   return (
     <SafeAreaView>
       <FlatList
@@ -146,13 +53,21 @@ export default function Home() {
           <>
             <View className="flex-row justify-between gap-4 mb-4">
               <View className="flex-row items-center gap-2 ml-4">
-                <CustomIcon name="Chrome" color="#FA5A2A" size={32} />
+                <CustomIcon name="Chrome" color={PRIMARY} size={32} />
                 <Text className="font-semibold">Luxeshop</Text>
               </View>
 
               <View className="mx-4 flex-row gap-x-2.5">
-                <TouchableOpacity className="border-grey/40 items-center justify-center rounded-md border p-1.5">
-                  <CustomIcon name="ShoppingBag" size={16} />
+                <TouchableOpacity
+                  onPress={cartOnClick}
+                  className="border-grey/40 items-center justify-center rounded-md border p-1.5"
+                >
+                  <View className="relative">
+                    <CustomIcon name="ShoppingBag" size={16} />
+                    {cart.length > 0 && (
+                      <View className="absolute top-0 right-0 bg-red-500 rounded-full size-1.5" />
+                    )}
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity className="border-grey/40 items-center justify-center rounded-md border p-1.5">
                   <CustomIcon name="Bell" size={16} />
@@ -174,30 +89,24 @@ export default function Home() {
         contentContainerClassName="my-6 gap-6"
         keyExtractor={(item) => item.id}
         ListFooterComponent={() => (
-          <>
+          <View className="h-full mx-4">
             <PromoCard />
+            <View className="flex-row justify-between mt-6 mb-2">
+              <Text className="text-xl font-sfbold">Recent Additions</Text>
+            </View>
             <MasonryFlashList
               data={productList}
               numColumns={2}
-              renderItem={({ item, index }) => <ProductCard {...item} />}
-              estimatedItemSize={200}
-              contentContainerStyle={{
-                padding: 8,
-              }}
-              keyExtractor={(item) => item.id}
-            />
-            {/* <FlatList
-              numColumns={productList.length / 2}
-              data={productList}
               renderItem={({ item, index }) => (
-                <View className="flex-col flex-1">
-                  <ProductCard {...item} />
+                <View className={`mb-2 ${index % 2 === 0 ? "mr-2" : ""}`}>
+                  <ProductCard {...{ ...item, id: String(item.id) }} />
                 </View>
               )}
-              keyExtractor={(item) => item.id}
-              columnWrapperClassName="mt-4 gap-4 mx-4"
-            /> */}
-          </>
+              estimatedItemSize={200}
+              keyExtractor={(item) => item.id as string}
+              contentContainerClassName="-ml-4"
+            />
+          </View>
         )}
         ListFooterComponentClassName="mb-16"
       />

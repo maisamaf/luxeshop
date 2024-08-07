@@ -1,14 +1,14 @@
+import { useState } from "react";
 import {
   View,
   Text,
   Image,
-  Pressable,
   TouchableOpacity,
   ImageSourcePropType,
 } from "react-native";
-import { useState } from "react";
-import CustomIcon from "./icon";
 import Checkbox from "expo-checkbox";
+
+import CustomIcon from "./icon";
 import { PRIMARY } from "@/utils/colors";
 import { PriceAfterDiscount } from "@/utils/getDiscountedPrice";
 
